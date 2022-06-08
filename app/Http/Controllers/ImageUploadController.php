@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Postimage;
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostImageRequest;
@@ -15,14 +16,16 @@ class ImageUploadController extends Controller
     {
         return view('add_image');
     }
+
     //Store image
-    public function storeImage(PostImageRequest $request){
+    public function storeImage(PostImageRequest $request)
+    {
         $images = $request->file('images');
-        foreach ($images as $image){
-            $filename = \Carbon\Carbon::now()->getPreciseTimestamp(3)    .'.'.$image->getClientOriginalExtension();
-            $image->storeAs(env('SAVING_DIR'),$filename);
+        foreach ($images as $image) {
+            $filename = \Carbon\Carbon::now()->getPreciseTimestamp(3) . '.' . $image->getClientOriginalExtension();
+            $image->storeAs(env('SAVING_DIR'), $filename);
             PostImage::create([
-                'image'=>$filename
+                'image' => $filename
             ]);
         }
     }
@@ -38,7 +41,7 @@ class ImageUploadController extends Controller
     {
         $postimage->delete();
         return redirect()->route('add_image')
-            ->with('success','image deleted successfully');
+            ->with('success', 'image deleted successfully');
     }
 
 

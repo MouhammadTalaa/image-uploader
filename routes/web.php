@@ -23,8 +23,7 @@ Route::get('/', function () {
 Route::get('/add-image',[ImageUploadController::class,'addImage'])->name('images.add');
 
 //For storing an image
-Route::post('/store-image',[ImageUploadController::class,'storeImage'])
-    ->name('images.store');
+Route::post('/store-image',[ImageUploadController::class,'storeImage'])->name('images.store');
 
 //For showing an image
 Route::get('/view-image',[ImageUploadController::class,'viewImage'])->name('images.view');
